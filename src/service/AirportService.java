@@ -131,8 +131,10 @@ public class AirportService {
         return planeWhitMinimalWeigth;
     }
 
+
     public  Airport task9(Airport [] planes){
         Airport minimalCostPlains = null;
+
         for (Airport plan:planes){
             if(plan != null && plan.isMilitary() && minimalCostPlains == null){
                 minimalCostPlains=plan;
@@ -145,6 +147,7 @@ public class AirportService {
        
     }
 
+
     public  void  task10(Airport [] planes){
         int count = 0;
         for (Airport plan:planes){
@@ -152,12 +155,19 @@ public class AirportService {
         }
 
         Airport [] sortPlanes = new Airport[count];
-        for (int i = 0; i < planes.length; i++) {
-            if(planes[i].getYear() > planes[i+1].getYear()){
-                Airport newPLan = planes[i+1];
-                planes[i+1] = planes[i];
-                planes[i] = newPLan;
-                i = -1;
+        for (int i = 0,j=0;i < planes.length; i++) {
+            if(planes[i] != null){
+                sortPlanes[j] = planes[i];
+                j++;
+            }
+        }
+        for (int i = 0; i < sortPlanes.length; i++) {
+            for (int j = 0; j < sortPlanes.length; j++) {
+                if(sortPlanes[i].getYear() > sortPlanes[j].getYear()){
+                    Airport newPlan = sortPlanes[j];
+                    sortPlanes[j] = sortPlanes[i];
+                    sortPlanes[i] = newPlan;
+                }
             }
         }
 
